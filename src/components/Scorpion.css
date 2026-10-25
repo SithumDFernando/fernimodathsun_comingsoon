@@ -1,8 +1,8 @@
 /* ================= SCORPION CONTAINER & 3D TILT ================= */
 .scorpion-wrapper {
   position: relative;
-  width: min(60vw, 370px);
-  height: min(60vw, 370px);
+  width: min(72vw, 38vh, 350px);
+  height: min(72vw, 38vh, 350px);
   margin: 0 auto;
   cursor: pointer;
   display: flex;
@@ -12,6 +12,8 @@
   transform-style: preserve-3d;
   will-change: transform;
   user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Ambient Radial Backlight Glow */

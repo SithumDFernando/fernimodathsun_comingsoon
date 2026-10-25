@@ -12,6 +12,14 @@ export default function App() {
       <div className="ambient-mesh" aria-hidden="true" />
       <div className="ambient-spotlight" aria-hidden="true" />
 
+      {/* Header / Navbar */}
+      <header className="landing-header">
+        <nav className="header-nav" aria-label="Brand Navigation">
+          <span className="brand-gem" aria-hidden="true" />
+          <span className="header-title">The World of Fernimo Dathsun</span>
+        </nav>
+      </header>
+
       {/* Main hero stage */}
       <main className="landing-stage">
         <div className="center-hero">

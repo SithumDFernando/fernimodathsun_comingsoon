@@ -9,6 +9,8 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 /* Cyber mesh ambient backdrop */
@@ -47,6 +49,78 @@
   z-index: 0;
 }
 
+/* ================= HEADER / NAVBAR ================= */
+.landing-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 1rem 0.2rem;
+  width: 100%;
+}
+
+.header-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.45rem, 1.5vw, 0.75rem);
+  padding: 0.42rem clamp(0.75rem, 2.5vw, 1.35rem);
+  max-width: 92vw;
+  background: rgba(16, 14, 11, 0.7);
+  border: 1px solid rgba(255, 180, 0, 0.18);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45),
+              inset 0 1px 0 rgba(255, 230, 100, 0.1);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  user-select: none;
+}
+
+.header-nav:hover {
+  border-color: rgba(255, 180, 0, 0.38);
+  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.18),
+              inset 0 1px 0 rgba(255, 230, 100, 0.2);
+}
+
+.brand-gem {
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #ffe600, #ff5400);
+  box-shadow: 0 0 8px #ffb703;
+  flex-shrink: 0;
+  animation: gemGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gemGlow {
+  0% {
+    box-shadow: 0 0 6px #ff8c00;
+    transform: rotate(45deg) scale(0.9);
+  }
+  100% {
+    box-shadow: 0 0 12px #ffe600;
+    transform: rotate(45deg) scale(1.15);
+  }
+}
+
+.header-title {
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  font-size: clamp(0.64rem, 2vw, 0.86rem);
+  font-weight: 600;
+  letter-spacing: clamp(0.1em, 1.5vw, 0.22em);
+  text-transform: uppercase;
+  color: rgba(255, 240, 215, 0.92);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+.header-nav:hover .header-title {
+  color: #ffffff;
+}
+
 /* ================= MAIN STAGE ================= */
 .landing-stage {
   position: relative;
@@ -54,8 +128,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   z-index: 2;
+  min-height: 0;
 }
 
 .center-hero {
@@ -69,15 +144,15 @@
 
 /* ================= LAUNCHING SOON BIG TITLE ================= */
 .launching-title {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   font-family: 'Syne', 'Outfit', sans-serif;
-  font-size: clamp(1.8rem, 4.6vw, 3.8rem);
+  font-size: clamp(1.4rem, 5.2vw, 3.6rem);
   font-weight: 900;
-  letter-spacing: 0.22em;
+  letter-spacing: clamp(0.1em, 1.8vw, 0.22em);
   text-transform: uppercase;
   text-align: center;
   line-height: 1.1;
-  white-space: nowrap;
+  max-width: 92vw;
   user-select: none;
 }
 
@@ -97,6 +172,7 @@
   animation: shimmerMove 6s ease-in-out infinite alternate;
   filter: drop-shadow(0 0 24px rgba(255, 140, 0, 0.4))
          drop-shadow(0 0 50px rgba(255, 90, 0, 0.2));
+  white-space: nowrap;
 }
 
 @keyframes shimmerMove {
@@ -119,24 +195,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1rem 1.6rem;
+  padding: 0.4rem 1rem 1.3rem;
 }
 
 .footer-content {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.45rem 1.1rem;
-  background: rgba(18, 16, 14, 0.6);
-  border: 1px solid rgba(255, 180, 0, 0.15);
+  gap: 0.6rem;
+  padding: 0.38rem 1rem;
+  max-width: 92vw;
+  background: rgba(16, 14, 11, 0.65);
+  border: 1px solid rgba(255, 180, 0, 0.16);
   border-radius: 999px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: all 0.3s ease;
+  user-select: none;
 }
 
 .footer-content:hover {
-  border-color: rgba(255, 180, 0, 0.4);
+  border-color: rgba(255, 180, 0, 0.38);
   box-shadow: 0 0 20px rgba(255, 140, 0, 0.18);
 }
 
@@ -147,6 +225,7 @@
   background-color: #ffb703;
   box-shadow: 0 0 8px #ffb703;
   animation: liveDotPulse 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 @keyframes liveDotPulse {
@@ -164,45 +243,106 @@
 
 .domain-text {
   font-family: 'Space Grotesk', monospace;
-  font-size: 0.82rem;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: clamp(0.08em, 1.2vw, 0.14em);
   color: rgba(255, 255, 255, 0.55);
   transition: color 0.25s ease;
+  white-space: nowrap;
 }
 
 .footer-content:hover .domain-text {
   color: rgba(255, 235, 180, 0.95);
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 640px) {
+/* ================= MOBILE BREAKPOINTS ================= */
+@media (max-width: 480px) {
+  .landing-header {
+    padding-top: 0.9rem;
+  }
+
+  .header-nav {
+    padding: 0.35rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .header-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+
   .launching-title {
-    font-size: clamp(1.6rem, 6.5vw, 2.8rem);
-    letter-spacing: 0.15em;
+    font-size: clamp(1.3rem, 7vw, 1.95rem);
+    letter-spacing: 0.12em;
   }
 
   .simple-footer {
-    padding: 0.75rem 1rem 1.25rem;
+    padding-bottom: 1rem;
   }
 
   .footer-content {
-    padding: 0.35rem 0.85rem;
+    padding: 0.32rem 0.8rem;
   }
 
   .domain-text {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.08em;
   }
 }
 
-@media (max-height: 700px) {
-  .scorpion-wrapper {
-    width: min(55vh, 290px);
-    height: min(55vh, 290px);
+@media (max-width: 340px) {
+  .header-title {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
   }
 
   .launching-title {
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+  }
+
+  .domain-text {
+    font-size: 0.65rem;
+  }
+}
+
+/* Height-constrained devices (short phones or landscape) */
+@media (max-height: 720px) {
+  .landing-header {
+    padding-top: 0.6rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .launching-title {
+    font-size: clamp(1.3rem, 4.2vw, 2.3rem);
+    margin-top: 0.15rem;
+  }
+
+  .simple-footer {
+    padding-bottom: 0.6rem;
+  }
+}
+
+@media (max-height: 520px) {
+  .landing-header {
+    padding: 0.3rem 0.5rem 0;
+  }
+
+  .header-nav {
+    padding: 0.22rem 0.65rem;
+  }
+
+  .header-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .launching-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
+  }
+
+  .simple-footer {
+    padding: 0.2rem 0.5rem 0.35rem;
   }
 }
