@@ -1,0 +1,208 @@
+/* ================= LANDING CONTAINER ================= */
+.landing-container {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  background-color: #060608;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Cyber mesh ambient backdrop */
+.ambient-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 170, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 170, 0, 0.025) 1px, transparent 1px);
+  background-size: 54px 54px;
+  background-position: center center;
+  mask-image: radial-gradient(circle at 50% 45%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, black 20%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Deep orange-yellow ambient backlight spotlight */
+.ambient-spotlight {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 750px);
+  height: min(90vw, 750px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 140, 0, 0.16) 0%,
+    rgba(255, 80, 0, 0.08) 35%,
+    rgba(255, 200, 0, 0.02) 60%,
+    transparent 75%
+  );
+  filter: blur(50px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================= MAIN STAGE ================= */
+.landing-stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+}
+
+.center-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ================= LAUNCHING SOON BIG TITLE ================= */
+.launching-title {
+  margin-top: 0.5rem;
+  font-family: 'Syne', 'Outfit', sans-serif;
+  font-size: clamp(1.8rem, 4.6vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.shimmer-text {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    #fff9e6 0%,
+    #ffe600 25%,
+    #ff9f1c 55%,
+    #ff5400 80%,
+    #ff2200 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerMove 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 24px rgba(255, 140, 0, 0.4))
+         drop-shadow(0 0 50px rgba(255, 90, 0, 0.2));
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.35))
+           drop-shadow(0 0 45px rgba(255, 80, 0, 0.18));
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 32px rgba(255, 200, 0, 0.5))
+           drop-shadow(0 0 65px rgba(255, 100, 0, 0.28));
+  }
+}
+
+/* ================= SIMPLE FOOTER ================= */
+.simple-footer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 1.6rem;
+}
+
+.footer-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.1rem;
+  background: rgba(18, 16, 14, 0.6);
+  border: 1px solid rgba(255, 180, 0, 0.15);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.footer-content:hover {
+  border-color: rgba(255, 180, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.18);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffb703;
+  box-shadow: 0 0 8px #ffb703;
+  animation: liveDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+    box-shadow: 0 0 4px #ffb703;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+    box-shadow: 0 0 12px #ffe600;
+  }
+}
+
+.domain-text {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.25s ease;
+}
+
+.footer-content:hover .domain-text {
+  color: rgba(255, 235, 180, 0.95);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 640px) {
+  .launching-title {
+    font-size: clamp(1.6rem, 6.5vw, 2.8rem);
+    letter-spacing: 0.15em;
+  }
+
+  .simple-footer {
+    padding: 0.75rem 1rem 1.25rem;
+  }
+
+  .footer-content {
+    padding: 0.35rem 0.85rem;
+  }
+
+  .domain-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-height: 700px) {
+  .scorpion-wrapper {
+    width: min(55vh, 290px);
+    height: min(55vh, 290px);
+  }
+
+  .launching-title {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+  }
+}
