@@ -28,7 +28,8 @@ export default function App() {
 
           {/* Launching soon in big letters below it */}
           <h1 className="launching-title">
-            <span className="shimmer-text">LAUNCHING SOON</span>
+            <span className="word word-launching shimmer-text">LAUNCHING</span>
+            <span className="word word-soon shimmer-text">SOON</span>
           </h1>
         </div>
       </main>
